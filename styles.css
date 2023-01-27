@@ -1,48 +1,84 @@
+html,body{
+  width:100%;
+  height: 100%;
+}
+  canvas{ display: block;  
+  }  
+  #particles-js{ 
+    overflow: hidden;
+    position:absolute; 
+    border: 0px;
+    width: 100%; 
+    height: 100%; 
+    background-color:white;
+    background-image: url("/img/back.jpg");
+    background-repeat:no-repeat; 
+    background-size:cover;
+    background-position: 100%;
+  }
+  .header{
+    background-color: lightgray;
+    text-align: center;
+    border: 5px;
+    border-radius: 30px;
+    border-color: gray;
+    padding: 15px;
+    position:relative;
+    width: 100%;
+    height: 10%;
+    box-shadow: 2px 2px  5px black;
+  }
+  .logo{
+    width: 65%;
+    height: 65%;
+    position: inherit;
+  }
+  input[type=button], input[type=submit], input[type=reset] {
+    background-color: #845aa0;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 
-body{ margin:0; 
-font:normal 75% Arial, Helvetica, sans-serif; 
-} 
-canvas{ display: block;  
-} 
-#particles-js{ 
-  position:absolute; 
-  width: 100%; 
-  height: 100%; 
-  background-color:white;
-  background-image: url("https://encompower.com/img/background.jpg");
-  background-repeat: no-repeat; 
-  background-size:cover; 
-  background-position: center; 
+  nav {
+    position: sticky;
+    overflow: hidden;
+    background-color: rgb(190, 190, 190);
+    box-shadow: 3px 3px 6px black;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 6px;
 }
-.header{
-  background-color: lightgray;
-  text-align: center;
-  border: 5px;
-  border-radius: 30px;
-  border-color: gray;
-  padding: 15px;
-  position:absolute;
-  width: 100%;
-  height: 10%;
-  box-shadow: 2px 2px  5px black;
-}
-h1{
-  font-family: 'Rye', cursive;
-  font-size: 60px;
-  text-transform: capitalize;
-  letter-spacing: 2px;
-  text-shadow: 0px 2px 5px yellow;
-  text-shadow: 2px 2px violet;
-  position:fixed;
-  top: -2%;
-  left: 20%;
-}
-.logo{
-  width: 10%;
-  height: 10%;
-  position:fixed;
-  top: 1%;
-  left: 5%;
-  border-radius: 20px;
-  box-shadow: 2px 2px 2px black;
-}
+  
+  li {
+    float: left;
+    
+  }
+  
+  li a {
+    display: block;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 40px 50px;
+    text-decoration: none;
+    font-size: 30px;
+    transition: 0.4s;
+    cursor:grab;
+    
+  }
+  li a:hover {
+    border-radius: 10%;
+    box-shadow: 4px 4px 8px 8px rgb(0, 0, 0);
+  }
+  .text{
+      position: absolute;
+      right: 150px;
+  }
+  p {
+    position: inherit;
+    font-size: 30px;
+  }
