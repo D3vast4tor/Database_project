@@ -26,6 +26,9 @@
         }
         session_start();
         $ID = $_SESSION['uid'];
+        if($ID == NULL){
+            header("Location: https://www.encompower.com/");
+        }
         $conn = new mysqli($host,$user,$password,$db_name);
         $stmt = $conn->prepare("select * from Device where ID = ?");
         $stmt->bind_param("s",$_SESSION['uid']);
