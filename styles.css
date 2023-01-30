@@ -1,6 +1,6 @@
-html,body{
-  width:100%;
-  height: 100%;
+html, body {
+  width: auto;
+  height: auto;
 }
   canvas{ display: block;  
   }  
@@ -33,7 +33,7 @@ html,body{
     height: 65%;
     position: inherit;
   }
-  input[type=button], input[type=submit], input[type=reset] {
+  input[type=button], input[type=submit]{
     background-color: #845aa0;
     border-radius: 10px;
     color: white;
@@ -41,12 +41,18 @@ html,body{
     margin: 4px 2px;
     cursor: pointer;
   }
-
+  
   nav {
     position: sticky;
     overflow: hidden;
-    background-color: rgb(190, 190, 190);
     box-shadow: 3px 3px 6px black;
+  }
+  .back{
+    position: sticky;
+    overflow: hidden;
+    box-shadow: 3px 3px 6px black;
+    background-color: rgb(221, 221, 221);
+    opacity: 50%;
   }
   ul {
     list-style-type: none;
@@ -63,7 +69,7 @@ html,body{
     display: block;
     color: rgb(0, 0, 0);
     text-align: center;
-    padding: 40px 50px;
+    padding:  40px 200px;
     text-decoration: none;
     font-size: 30px;
     transition: 0.4s;
@@ -76,7 +82,7 @@ html,body{
   }
   .text{
       position: absolute;
-      right: 150px;
+      right: 15%;
   }
   p {
     position: inherit;

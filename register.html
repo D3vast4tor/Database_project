@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="https://www.encompower.com/rlbackground.css">
+        <link rel="stylesheet" type="text/css" href="https://www.encompower.com/rbackground.css">
     </head>
     <body>
         <div class="register">
             
         </div>
         <div class="reg">
-        <form action="./db.php" method="GET">
+        <form action="/script/reg_user.php" method="POST">
                 <h2>Registration form</h2>
                 <input type="text" name="name" placeholder="Name" class="name">
                 <input type="text" name="surname" placeholder="Surname" class="surname">
@@ -21,7 +21,7 @@
                 <input type="text" name="street" placeholder="Street" class="street">
                 <input type="number" name="civic_number" placeholder="N°" class="civic_number">   
                 <h3>Contract Terms</h3>           
-                <select class="deadline" name="deadline">
+                <select class="deadline" value="deadline" name="deadline">
                     <option value="monthly">Monthly</option>
                     <option value="bimonthly">Bimonthly</option>
                     <option value="quartely">Quartely</option>

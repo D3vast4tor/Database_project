@@ -1,7 +1,7 @@
-html, body{
-    min-height:100%;
-    min-width:100%;
-    }
+html, body {
+    width: auto;
+    height: auto;
+}
 body{
     background-image: url("/img/join-background.jpg");
     background-size: cover;
@@ -158,8 +158,9 @@ input[type=button], input[type=submit], input[type=reset] {
     left: 40px;
     position: relative;
 }
-@media (min-width: 600px) {
-    .column {
-      width: 50%;
-    }
-  }
+
+.lback{
+    background-image: url("/img/login.png");
+    background-position: center;
+    background-size: cover;
+}

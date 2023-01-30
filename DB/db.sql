@@ -64,6 +64,7 @@ CREATE TABLE `Location` (
 
 LOCK TABLES `Location` WRITE;
 /*!40000 ALTER TABLE `Location` DISABLE KEYS */;
+INSERT INTO `Location` VALUES (2,'Via Timoleone',41,'Gela',93012,'Italy'),(3,'Via Timoleone',41,'Gela',93012,'Italy'),(4,'Via Timoleone',41,'Gela',93012,'Italy'),(5,'Via Timoleone',41,'Gela',93012,'Italy'),(6,'Via Timoleone',41,'Gela',93012,'Italy'),(8,'Via Timoleone',41,'Gela',93012,'Italy'),(9,'Via Timoleone',41,'Gela',93012,'Italy'),(10,'Via Timoleone',41,'Gela',93012,'Italy');
 /*!40000 ALTER TABLE `Location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,9 +78,9 @@ DROP TABLE IF EXISTS `Pricing`;
 CREATE TABLE `Pricing` (
   `ID` int(11) NOT NULL,
   `rate_amount` float NOT NULL,
-  `deadline` varchar(20) DEFAULT NULL CHECK (`deadline` = 'monthly' | `deadline` = 'bimonthly' | `deadline` = 'quarterly'),
   `date` date NOT NULL,
   `paid` tinyint(1) DEFAULT NULL,
+  `deadline` varchar(30) NOT NULL,
   KEY `ID` (`ID`),
   CONSTRAINT `Pricing_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `User` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -91,6 +92,7 @@ CREATE TABLE `Pricing` (
 
 LOCK TABLES `Pricing` WRITE;
 /*!40000 ALTER TABLE `Pricing` DISABLE KEYS */;
+INSERT INTO `Pricing` VALUES (10,43.82,'2023-01-29',NULL,'monthly');
 /*!40000 ALTER TABLE `Pricing` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +111,7 @@ CREATE TABLE `User` (
   `email` varchar(30) NOT NULL,
   `password` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-25 20:36:36
+-- Dump completed on 2023-01-29 19:11:55
