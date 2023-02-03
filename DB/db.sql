@@ -66,7 +66,7 @@ CREATE TABLE `Location` (
 
 LOCK TABLES `Location` WRITE;
 /*!40000 ALTER TABLE `Location` DISABLE KEYS */;
-INSERT INTO `Location` VALUES (11,'Via Timoleone',41,'Gela',93012,'Italy');
+INSERT INTO `Location` VALUES (1,'Via Timoleone',41,'Gela',93012,'Italy'),(2,'Via Timoleone',31,'Gela',93012,'Italy');
 /*!40000 ALTER TABLE `Location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +94,7 @@ CREATE TABLE `Pricing` (
 
 LOCK TABLES `Pricing` WRITE;
 /*!40000 ALTER TABLE `Pricing` DISABLE KEYS */;
-INSERT INTO `Pricing` VALUES (10,43.82,'2023-01-29',NULL,'monthly'),(11,43.82,'2023-01-30',NULL,'monthly');
+INSERT INTO `Pricing` VALUES (1,43.82,'2023-01-30',NULL,'monthly'),(2,43.82,'2023-01-30',NULL,'monthly');
 /*!40000 ALTER TABLE `Pricing` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `User` (
   `email` varchar(30) NOT NULL,
   `password` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (11,'Mattia','Ruberto','RBRMTT03B05D960G','mattiar.o@live.it',NULL);
+INSERT INTO `User` VALUES (1,'Mattia','Ruberto','RBRMTT03B05D960G','mattiar.o@live.it',NULL),(2,'Alfredo Cosini','Alberto','POAWO\"=\"!OJFAO','dokwkod@okwok.ot',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -135,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-30 17:59:09
+-- Dump completed on 2023-01-31 18:30:19

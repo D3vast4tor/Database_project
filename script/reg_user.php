@@ -17,6 +17,7 @@ $pricing = $db_conn->prepare("insert into Pricing(ID,rate_amount,deadline,date) 
 /************************************************************************************************************************
  * Retriving preaviously collected data, binding parameters to the preaviously parsed statement and executing the query.*
  ************************************************************************************************************************/ 
+
 $name = $_POST['name'];
 $surname = $_POST['surname'];
 $fiscal_code = $_POST['fiscal_code'];

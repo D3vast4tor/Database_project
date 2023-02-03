@@ -11,7 +11,7 @@ $pass = $_POST['password'];
 
 $stmt = $conn->prepare("select * from User where email = ?");
 $stmt->bind_param("s",$email);
-$sel = $stmt->execute($res);
+$stmt->execute($res);
 $res = $stmt->get_result()->fetch_assoc();
 if(!$res){
     /*************************

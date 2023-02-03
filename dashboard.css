@@ -21,8 +21,6 @@ form{
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 10%;
-    transition-delay: 0.03s;
-    transition-duration: 1.2s;
 }
 .devices:hover{
     box-shadow: 3px 3px 6px 6px black;
@@ -36,8 +34,85 @@ div.device{
     width: 60%;
     height: 80%;
     opacity: 0;
-    transition:0.05s;
-    transition-duration: 1s;
     background-color: white;
     overflow: hidden;
+    border-radius: 2%;
+}
+.close {
+    width: 2.1%;
+    height: 3.2%;
+    position: relative;
+    top: 1%;
+    left: 97%;
+    border: 0;
+    padding: 1px;
+    background-color: white;
+    background-image: url("/img/letter_x.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: 1s;
+}
+.close:hover {
+    transition-duration: 0.5s;
+    width: 4.2%;
+    height: 6.4%;
+    top: 1%;
+    left: 95%;
+}
+ul {
+    width: 95%;
+    height: 100%;
+    position:inherit;
+    list-style-type: none;
+    top: 0;
+    padding: 0;
+    margin: 0;
+}
+li{
+    position: relative;
+    width: 30%;
+    margin: 1%;
+    float: inline-start;
+}
+img.contatore{
+    width: 60%;
+    height: 60%; 
+    position: relative;
+    margin: 20%;
+    left: 10%;
+}
+
+img.solare{
+    width: 60%;
+    height: 60%; 
+    position: relative;
+    margin: 20%;
+  }
+img.eolico{
+    width: 60%;
+    height: 60%; 
+    position: relative;
+    margin: 20%;
+}
+p{
+    position: relative;
+    font-family: 'Rye', cursive;
+    left: 41%;
+    bottom: 90px;
+    font-size: 30px;
+    opacity: 0;
+    animation-name: testo;
+    animation-delay: 0.5s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+div.dev_det{
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+    position:relative;
+}
+@keyframes testo{
+    100%{bottom: 80px;opacity: 100%;font-size: 30px}
 }
