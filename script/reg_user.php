@@ -1,5 +1,6 @@
 
 <?php
+ini_set('display_errors',1);
 session_start();
 include_once "./db_credentials.php";
 $db_conn = new mysqli($host,$user,$password,$db_name);
@@ -44,5 +45,5 @@ $date = date("Ymd");
 $date = substr($date,2);
 $pricing->bind_param("ssss",$ID,$rate_amount,$deadline,$date );
 $pricing->execute();
-header("Location: /index.html");
+header("Location: https://encompower.com/index.html");
 ?>
