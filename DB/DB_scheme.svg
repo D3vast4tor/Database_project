@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -38,8 +38,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.78374771"
-     inkscape:cx="1081.5485"
-     inkscape:cy="804.82279"
+     inkscape:cx="816.79494"
+     inkscape:cy="417.43479"
      inkscape:window-width="1920"
      inkscape:window-height="990"
      inkscape:window-x="0"
@@ -162,7 +162,7 @@
        ry="5.745389" />
     <path
        style="fill:#161616;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 64.148973,-89.027797 16.578942,10.262836"
+       d="m 64.148973,-89.027797 16.578941,10.262836"
        id="path1138"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -170,7 +170,7 @@
        inkscape:connection-end="#rect138-9" />
     <path
        style="fill:#161616;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 135.09391,-87.914763 -15.68084,9.149802"
+       d="m 135.09392,-87.914761 -15.68085,9.1498"
        id="path1140"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -799,7 +799,7 @@
        cx="99.410469" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 99.431266,-85.874719 0.02573,7.109758"
+       d="m 99.431263,-85.874719 0.02573,7.109758"
        id="path316"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -817,7 +817,7 @@
          style="font-size:7.05556px;stroke-width:0.264583"
          id="tspan322">User_id</tspan></text>
     <ellipse
-       style="fill:#ffffff;stroke-width:0.264583"
+       style="fill:#ffffff;stroke-width:0.264583;stroke:#000000;stroke-opacity:1"
        id="path330"
        cx="-98.206276"
        cy="40.113369"
@@ -825,13 +825,13 @@
        ry="2.6495738" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m -101.02674,40.106837 -20.37734,-0.0472"
+       d="m -101.02674,40.106836 -20.37734,-0.0472"
        id="path332"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        inkscape:connection-start="#path330" />
     <ellipse
-       style="fill:#ffffff;stroke-width:0.264583"
+       style="fill:#ffffff;stroke-width:0.264583;stroke:#000000;stroke-opacity:1"
        id="path330-4"
        cx="113.4086"
        cy="-83.076881"
@@ -839,13 +839,13 @@
        ry="2.6495738" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 110.58813,-83.083416 -20.377328,-0.0472"
+       d="m 110.58813,-83.083415 -20.377328,-0.0472"
        id="path332-1"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
        inkscape:connection-start="#path330-4" />
     <ellipse
-       style="fill:#ffffff;stroke-width:0.264585"
+       style="fill:#ffffff;stroke-width:0.264585;stroke:#000000;stroke-opacity:1"
        id="path330-0"
        cx="-49.086739"
        cy="-148.07718"
@@ -875,7 +875,7 @@
        ry="5.745389" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 80.981301,179.41915 9.6775,-11.38529"
+       d="m 80.981302,179.41915 9.677499,-11.38529"
        id="path413"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
