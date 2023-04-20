@@ -1,0 +1,7 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.8",
+        "amphp/react-adapter": "^2.1",
+        "spatie/async": "^1.5"
+    }
+}

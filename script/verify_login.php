@@ -1,7 +1,6 @@
 <?php 
 session_start();
-session_save_path("/cert");
-include_once "./db_credentials.php";
+include_once "/Database_project/script/db_credentials.php";
 $conn = new mysqli($host,$user,$password,$db_name);
 if($conn->connect_error){
     header("Location: /login.html");
@@ -11,7 +10,7 @@ $pass = $_POST['password'];
 
 $stmt = $conn->prepare("select * from User where email = ?");
 $stmt->bind_param("s",$email);
-$stmt->execute($res);
+$stmt->execute();
 $res = $stmt->get_result()->fetch_assoc();
 if(!$res){
     /*************************

@@ -66,7 +66,6 @@ CREATE TABLE `Location` (
 
 LOCK TABLES `Location` WRITE;
 /*!40000 ALTER TABLE `Location` DISABLE KEYS */;
-INSERT INTO `Location` VALUES (1,'Via Timoleone',41,'Gela',93012,'Italia');
 /*!40000 ALTER TABLE `Location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +93,6 @@ CREATE TABLE `Pricing` (
 
 LOCK TABLES `Pricing` WRITE;
 /*!40000 ALTER TABLE `Pricing` DISABLE KEYS */;
-INSERT INTO `Pricing` VALUES (1,43.82,'2023-03-06',NULL,'monthly');
 /*!40000 ALTER TABLE `Pricing` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,6 +110,7 @@ CREATE TABLE `User` (
   `fiscal_code` char(16) NOT NULL,
   `email` varchar(30) NOT NULL,
   `password` varchar(30) DEFAULT NULL,
+  'type' varchar(30) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -122,7 +121,6 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'Mattia','Ruberto','RBRMTT03B05D960G','mattiar.o@live.it',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -136,3 +134,37 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-03-14 16:24:39
+DELIMITER //
+CREATE PROCEDURE IF NOT EXISTS pay_bill(bill_id)
+MODIFIES SQL DATA
+BEGIN 
+  UPDATE Pricing SET paid=1 where ID=bill_id;
+END;
+//
+
+DELIMITER //
+CREATE PROCEDURE gen_bill(IN Id int)
+MODIFIES SQL DATA
+BEGIN
+  SELECT type into @user_type from User WHERE ID=Id;
+  SELECT kw into @kw from Device WHERE id=Id AND type='contatore';
+  SELECT deadline into @deadline from Pricing WHERE id=Id;
+  IF(@user_type = "domestico") THEN
+    INSERT INTO Pricing(rate_amount,date,paid,deadline,id) VALUES(
+      @kw*0.530,
+      CURDATE()+(@deadline*100),
+      paid = NULL,
+      @deadline,
+      Id
+    );
+    ELSE
+      INSERT INTO Pricing(rate_amount,date,paid,deadline,id) VALUES(
+      @kw*0.510,
+      CURDATE()+(@deadline*100),
+      paid = NULL,
+      @deadline,
+      Id
+      );
+  END IF;
+END;
+//
