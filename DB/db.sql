@@ -25,11 +25,12 @@ DROP TABLE IF EXISTS `Device`;
 CREATE TABLE `Device` (
   `device_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(30) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
   `kw` float DEFAULT NULL,
+  `uid` int(11) NOT NULL,
   PRIMARY KEY (`device_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `Device_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`ID`)
+  KEY `user_id` (`user`),
+  CONSTRAINT `Device_ibfk_1` FOREIGN KEY (`user`) REFERENCES `User` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,7 +40,7 @@ CREATE TABLE `Device` (
 
 LOCK TABLES `Device` WRITE;
 /*!40000 ALTER TABLE `Device` DISABLE KEYS */;
-INSERT INTO `Device` VALUES (1,'contatore',1,0.7);
+INSERT INTO `Device` VALUES (1,'contatore',1,0.7,1);
 /*!40000 ALTER TABLE `Device` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,14 +52,14 @@ DROP TABLE IF EXISTS `Location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Location` (
-  `ID` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `street` varchar(30) NOT NULL,
   `civic_number` int(11) NOT NULL,
   `city` varchar(30) NOT NULL,
   `cap` int(6) NOT NULL,
   `state` varchar(30) NOT NULL,
-  KEY `ID` (`ID`),
-  CONSTRAINT `Location_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `User` (`ID`)
+  KEY `ID` (`user_id`),
+  CONSTRAINT `Location_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,7 +69,7 @@ CREATE TABLE `Location` (
 
 LOCK TABLES `Location` WRITE;
 /*!40000 ALTER TABLE `Location` DISABLE KEYS */;
-INSERT INTO `Location` VALUES (1,'Via Timoleone',41,'Gela',93012,'Italy');
+INSERT INTO `Location` VALUES (1,'Via Timoleone',41,'Gela',93012,'Italy'),(1,'via roma',65,'sortino',96010,'Italy');
 /*!40000 ALTER TABLE `Location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,10 +86,10 @@ CREATE TABLE `Pricing` (
   `date` date NOT NULL,
   `paid` tinyint(4) DEFAULT NULL,
   `deadline` int(11) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL,
+  `u_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_bill`),
-  KEY `id` (`id`),
-  CONSTRAINT `Pricing_ibfk_1` FOREIGN KEY (`id`) REFERENCES `User` (`ID`)
+  KEY `id` (`u_id`),
+  CONSTRAINT `Pricing_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `User` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -111,7 +112,7 @@ DROP TABLE IF EXISTS `User`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `User` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(30) DEFAULT NULL,
+  `user_type` varchar(30) DEFAULT NULL,
   `name` varchar(30) NOT NULL,
   `surname` varchar(30) NOT NULL,
   `fiscal_code` char(16) NOT NULL,
@@ -147,21 +148,22 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `gen_bill`(IN Id int)
     MODIFIES SQL DATA
 BEGIN
-  SELECT type into @user_type from User WHERE ID=Id;
-  SELECT kw into @kw from Device WHERE id=Id AND type='contatore';
-  SELECT deadline into @deadline from Pricing WHERE id=Id;
+  SELECT user_type into @user_type from User WHERE ID=Id;
+  SELECT kw into @kw from Device WHERE uid=Id AND type='contatore';
+  SELECT deadline into @deadline from Pricing WHERE u_id=Id limit 1;
+  SELECT date into @date from Pricing where u_id=Id order by date desc limit 1;
   IF(@user_type = "domestico") THEN
-    INSERT INTO Pricing(rate_amount,date,paid,deadline,id) VALUES(
+    INSERT INTO Pricing(rate_amount,date,paid,deadline,u_id) VALUES(
       @kw*0.530,
-      CURDATE()+(@deadline*100),
+      DATE_ADD(@date,INTERVAL @deadline MONTH),
       paid = NULL,
       @deadline,
       Id
     );
     ELSE
-      INSERT INTO Pricing(rate_amount,date,paid,deadline,id) VALUES(
+      INSERT INTO Pricing(rate_amount,date,paid,deadline,u_id) VALUES(
       @kw*0.510,
-      CURDATE()+(@deadline*100),
+      DATE_ADD(@date,INTERVAL @deadline MONTH),
       paid = NULL,
       @deadline,
       Id
@@ -185,7 +187,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pay_bill`(in bill_id int)
     MODIFIES SQL DATA
-BEGIN    UPDATE Pricing SET paid=1 where ID=bill_id; END ;;
+BEGIN update Pricing set paid=1 where id_bill=bill_id;end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -201,4 +203,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-20 11:39:59
+-- Dump completed on 2023-04-26 17:48:45

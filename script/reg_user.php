@@ -20,18 +20,18 @@ if($db_conn->connect_error){
  * Prepare statement for optimizing query time since the parsing is done one time(as the preparation of a query) and binded as many time as needed.*
  * It also prevents SQL Injection attacks since the original statement is not delivered from external input like php or a web server in general.   *
  ***************************************************************************************************************************************************/
-$user = $db_conn->prepare("insert into User(name,surname,fiscal_code,email) values(?,?,?,?)");
+$user = $db_conn->prepare("insert into User(name,surname,fiscal_code,email,type) values(?,?,?,?,?)");
 $location = $db_conn->prepare("insert into Location(ID,state,city,cap,street,civic_number) values(?,?,?,?,?,?)");
 $pricing = $db_conn->prepare("insert into Pricing(ID,rate_amount,deadline,date) values(?,?,?,?) ");
 /************************************************************************************************************************
  * Retriving preaviously collected data, binding parameters to the preaviously parsed statement and executing the query.*
  ************************************************************************************************************************/ 
-
+$type = $_POST['type'];
 $name = $_POST['name'];
 $surname = $_POST['surname'];
 $fiscal_code = $_POST['fiscal_code'];
 $email = $_POST['email'];
-$user->bind_param("ssss",$name,$surname,$fiscal_code,$email);
+$user->bind_param("ssss",$name,$surname,$fiscal_code,$email,$type);
 $user->execute();
 /**********************************************************************************************************************************
  * Retriving the ID assigned by the database, the variable is defined with the AUTO_INCREMENT property to bound the other columns.*
@@ -53,10 +53,11 @@ $date = date("Ymd");
 $date = substr($date,2);
 $pricing->bind_param("ssss",$ID,$rate_amount,$deadline,$date );
 $pricing->execute();
-header("Location: https://".$_SERVER["HTTP_HOST"]."/index.html");
+$domain = $_SERVER['HTTP_HOST'];
+header("Location: https://$domain/index.html");
 $_SESSION['ID'] = $ID;
-$url = "https://".$_SERVER['HTTP_HOST']."/script/password.php?". SID;
-try{/***************************************************************
+$url = "https://$domain/script/password.php?". SID;
+try{/**************************************************************
      * SET REQUIRED PARAMETER LIKE SMARTHOST RELAY, SMARTHOST PORT *
      * AND THE CREDENTIAL REQUIRED FOR SMTPS AUTHENTICATION        *
      ***************************************************************/
@@ -78,10 +79,6 @@ try{/***************************************************************
      <html lang='en'>
      <head>
          <meta name='viewport' content='width=device-width, initial-scale=1'>
-         <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
-         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous'></script>
-         <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js' integrity='sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB' crossorigin='anonymous'></script>
-         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js' integrity='sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13' crossorigin='anonymous'></script>
      </head>
      <body class='bg-dark bg-gradient' style='background-repeat: no-repeat;'>
          <div class='d-flex justify-content-center '>

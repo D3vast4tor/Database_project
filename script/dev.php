@@ -10,7 +10,8 @@
             require "/Database_project/src/vendor/autoload.php";
             $loop = Amp\ReactAdapter\ReactAdapter::get();
             $conn = new mysqli($host,$user,$password,$db_name);
-            $row = $conn->query("SELECT * FROM Pricing")->fetch_assoc();
+            $row = $conn->query("SELECT * FROM Device where user_id=1");
+            echo $row['type'];
             
         ?>
     </body>
